@@ -9,6 +9,7 @@ import theme from "styles/theme";
 import GlobalStyles from "styles/global";
 import { Router } from "router";
 import { BookingProvider } from "contexts";
+import { HamburgerMenu } from "components/HamburgerMenu";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
@@ -16,6 +17,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
       <ToastContainer />
       <BookingProvider>
         <GlobalStyles />
+        <HamburgerMenu />
         <Router />
       </BookingProvider>
     </ThemeProvider>

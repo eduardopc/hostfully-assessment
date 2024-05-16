@@ -1,5 +1,5 @@
 import { ReactElement, useState } from "react";
-import DatePicker from "react-multi-date-picker";
+import DatePicker, { DateObject, Value } from "react-multi-date-picker";
 import { CalendarToday } from "@styled-icons/material-outlined";
 
 import { Button } from "components/Button";
@@ -18,7 +18,6 @@ import {
   BookingFormStyleProps,
   BookingFormWrapper,
 } from "./styles";
-import { DatesProps } from "types";
 import { isBookingDateRangeAvailable, showToastMessage } from "helpers";
 
 type BookingFormProps = {
@@ -28,15 +27,17 @@ type BookingFormProps = {
 export const BookingForm = ({
   formDirection,
 }: BookingFormProps): ReactElement => {
-  const [date, setDates] = useState<DatesProps[]>([]);
+  const [date, setDates] = useState<Value>([]);
   const [selectAdults, setSelectAdults] = useState<Option>(null);
   const [selectChildren, setSelectChildren] = useState<Option>(null);
 
   const { bookings, handleSaveBooking } = useBooking();
 
-  const handleBookingDates = ({ from, to }: DatesProps): void => {
+  const handleBookingDates = (date: DateObject[]): void => {
+    const [from, to] = date.toLocaleString().split(",");
+
     if (isBookingDateRangeAvailable(new Date(from), new Date(to), bookings)) {
-      setDates((prevState) => [...prevState, { from, to }]);
+      setDates(date);
     } else {
       setDates([]);
       showToastMessage({
@@ -55,7 +56,7 @@ export const BookingForm = ({
   };
 
   const handleClearFilters = (): void => {
-    setDates([]);
+    setDates(null);
     setSelectAdults(null);
     setSelectChildren(null);
   };
@@ -75,7 +76,8 @@ export const BookingForm = ({
     });
   };
 
-  const showClearButton = date.length > 0 || selectAdults || selectChildren;
+  const showClearButton =
+    date?.toLocaleString().length || selectAdults || selectChildren;
   const showSaveButton = date && selectAdults && selectChildren;
 
   return (
@@ -90,15 +92,11 @@ export const BookingForm = ({
             minDate={new Date()}
             calendarPosition="bottom"
             highlightToday={false}
-            value={[date[0]?.from, date[0]?.to]}
+            value={date}
             range
             dateSeparator={DATEPICKER.separator}
-            onChange={(_, { validatedValue }) => {
-              if (validatedValue.length > 1)
-                handleBookingDates({
-                  from: validatedValue[0],
-                  to: validatedValue[1],
-                });
+            onChange={(date: DateObject[], { validatedValue }) => {
+              if (validatedValue.length > 1) handleBookingDates(date);
             }}
           />
         </FormGroup>

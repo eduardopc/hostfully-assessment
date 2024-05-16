@@ -7,15 +7,17 @@ export const isBookingDateRangeAvailable = (
   to: Date,
   bookings: BookingDataProps[]
 ): boolean => {
-  return !bookings.some(
-    (booking) =>
-      isWithinInterval(from, {
-        start: booking.date[0].from,
-        end: booking.date[0].to,
-      }) ||
-      isWithinInterval(to, {
-        start: booking.date[0].from,
-        end: booking.date[0].to,
-      })
-  );
+  return !bookings.some((booking) => {
+    if (!booking.date) return false;
+
+    const [dateFrom, dateTo] = booking.date.toLocaleString().split(",");
+
+    const fromDate = new Date(dateFrom);
+    const toDate = new Date(dateTo);
+
+    return (
+      isWithinInterval(from, { start: fromDate, end: toDate }) ||
+      isWithinInterval(to, { start: fromDate, end: toDate })
+    );
+  });
 };

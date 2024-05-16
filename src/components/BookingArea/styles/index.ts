@@ -23,15 +23,3 @@ export const BookingWrapper = styled.section`
     `}
   `}
 `;
-
-export const BookingSection = styled.section`
-  ${({ theme }) => css`
-    margin: 0 calc(-${theme.grid.gutter} / 2) ${theme.spacings.large};
-
-    ${media.greaterThan("medium")`
-      margin-bottom: ${theme.spacings.large};
-      position: relative;
-      z-index: ${theme.layers.base};
-    `}
-  `}
-`;

@@ -19,7 +19,12 @@ export const BookingContext = createContext<BookingContextData>(
 export const BookingProvider = ({
   children,
 }: BookingContextProps): ReactElement => {
+  const [menuIsOpen, setMenuIsOpen] = useState(false);
   const [bookings, setBookings] = useState<BookingDataProps[]>([]);
+
+  const openMenu = useCallback((): void => {
+    setMenuIsOpen((prevState) => !prevState);
+  }, []);
 
   const handleSaveBooking = useCallback((bookingData: BookingDataProps) => {
     setBookings((prevState) => [...prevState, bookingData]);
@@ -29,6 +34,8 @@ export const BookingProvider = ({
     <BookingContext.Provider
       value={{
         bookings,
+        menuIsOpen,
+        openMenu,
         handleSaveBooking,
       }}
     >

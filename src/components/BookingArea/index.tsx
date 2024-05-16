@@ -9,9 +9,7 @@ export const BookingArea = (): ReactElement => {
   return (
     <S.Wrapper>
       <S.BookingWrapper>
-        <S.BookingSection>
-          <Banner {...bannerMock} />
-        </S.BookingSection>
+        <Banner {...bannerMock} />
       </S.BookingWrapper>
     </S.Wrapper>
   );

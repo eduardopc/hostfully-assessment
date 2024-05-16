@@ -1,16 +1,24 @@
 import styled, { css } from "styled-components";
 import media from "styled-media-query";
 
-export const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-  justify-content: space-between;
+type WrapperProps = {
+  isOpen: boolean;
+};
+
+export const Wrapper = styled.div<WrapperProps>`
+  ${({ isOpen }) => css`
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    justify-content: space-between;
+    overflow: ${isOpen ? "hidden" : "initial"};
+  `}
 `;
 
 export const Content = styled.section`
   ${({ theme }) => css`
-    margin-top: ${theme.spacings.medium};
+    margin: ${theme.spacings.medium} ${theme.spacings.small} 0
+      ${theme.spacings.small};
     flex: 1 0 auto;
   `}
 `;
