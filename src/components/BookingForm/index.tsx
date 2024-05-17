@@ -87,7 +87,7 @@ export const BookingForm = ({
           <DatePicker
             render={
               <Button icon={<CalendarToday />}>
-                {GENERAL.datePicker.dates}
+                {GENERAL.date_picker.dates}
               </Button>
             }
             hideOnScroll
@@ -96,7 +96,7 @@ export const BookingForm = ({
             highlightToday={false}
             value={date}
             range
-            dateSeparator={GENERAL.datePicker.separator}
+            dateSeparator={GENERAL.date_picker.separator}
             onChange={(date: DateObject[], { validatedValue }) => {
               if (validatedValue.length > 1) handleBookingDates(date);
             }}

@@ -16,7 +16,6 @@ export type BookingDataProps = {
 
 export type BookingContextData = {
   bookings: BookingDataProps[];
-  menuIsOpen: boolean;
-  openMenu: () => void;
   handleSaveBooking: (option: BookingDataProps) => void;
+  handleDeleteReservation: (id: BookingDataProps["id"]) => void;
 };

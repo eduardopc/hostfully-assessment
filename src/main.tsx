@@ -9,17 +9,15 @@ import theme from "styles/theme";
 import GlobalStyles from "styles/global";
 import { Router } from "router";
 import { BookingProvider } from "contexts";
-import { HamburgerMenu } from "components/HamburgerMenu";
 import { BrowserRouter } from "react-router-dom";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <BrowserRouter>
       <ThemeProvider theme={theme}>
-        <ToastContainer />
         <BookingProvider>
+          <ToastContainer />
           <GlobalStyles />
-          <HamburgerMenu />
           <Router />
         </BookingProvider>
       </ThemeProvider>

@@ -494,6 +494,14 @@
   resolved "https://registry.yarnpkg.com/@rollup/rollup-win32-x64-msvc/-/rollup-win32-x64-msvc-4.17.2.tgz#5a2d08b81e8064b34242d5cc9973ef8dd1e60503"
   integrity sha512-TGGO7v7qOq4CYmSBVEYpI1Y5xDuCEnbVC5Vth8mOsW0gDSzxNrVERPc790IGHsrT2dQSimgMr9Ub3Y1Jci5/8w==
 
+"@styled-icons/fa-regular@^10.47.0":
+  version "10.47.0"
+  resolved "https://registry.yarnpkg.com/@styled-icons/fa-regular/-/fa-regular-10.47.0.tgz#0c2e3196bec0706d2cb7fce5f7f49fdefc15e3b1"
+  integrity sha512-UL/MwhwlJ5SbcioI+UBR8KocYt6i+20akKn1ZNj0Pjgm2kv2odEJSWWkHCxh8J7T7s0q/Wvs3CMsBTMrKdKDpQ==
+  dependencies:
+    "@babel/runtime" "^7.20.7"
+    "@styled-icons/styled-icon" "^10.7.0"
+
 "@styled-icons/material-outlined@^10.47.0":
   version "10.47.0"
   resolved "https://registry.yarnpkg.com/@styled-icons/material-outlined/-/material-outlined-10.47.0.tgz#d799a14c1cbbd4d730d046d9f791f108e907fd34"

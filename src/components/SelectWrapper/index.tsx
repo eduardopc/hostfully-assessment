@@ -1,16 +1,13 @@
 import { ReactElement } from "react";
 import { FormGroup } from "components/FormGroup";
-import Select, { MultiValue, SingleValue } from "react-select";
+import Select, { SingleValue } from "react-select";
 import makeAnimated from "react-select/animated";
 
 import * as S from "./styles";
 
 const animatedComponents = makeAnimated();
 
-export type Option =
-  | SingleValue<SelectOption>
-  | MultiValue<SelectOption>
-  | null;
+export type Option = SingleValue<SelectOption> | null;
 
 export type SelectOption = {
   value: string;
@@ -45,6 +42,7 @@ export const SelectWrapper = ({
         isClearable={true}
         isSearchable={false}
         value={defaultValue}
+        isMulti={false}
         onChange={handleDropdown}
       />
     </FormGroup>

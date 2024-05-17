@@ -12,6 +12,8 @@ import {
   BookingContextProps,
   BookingDataProps,
 } from "./types";
+import { showToastMessage } from "helpers";
+import { GENERAL } from "languages";
 
 export const BookingContext = createContext<BookingContextData>(
   {} as BookingContextData
@@ -20,12 +22,7 @@ export const BookingContext = createContext<BookingContextData>(
 export const BookingProvider = ({
   children,
 }: BookingContextProps): ReactElement => {
-  const [menuIsOpen, setMenuIsOpen] = useState(false);
   const [bookings, setBookings] = useState<BookingDataProps[]>([]);
-
-  const openMenu = useCallback((): void => {
-    setMenuIsOpen((prevState) => !prevState);
-  }, []);
 
   const handleSaveBooking = useCallback((bookingData: BookingDataProps) => {
     setBookings((prevState) => [
@@ -34,13 +31,22 @@ export const BookingProvider = ({
     ]);
   }, []);
 
+  const handleDeleteReservation = useCallback((id: BookingDataProps["id"]) => {
+    setBookings((prevState) =>
+      prevState.filter((booking) => booking.id !== id)
+    );
+    showToastMessage({
+      message: GENERAL.delete_reservation,
+      type: "success",
+    });
+  }, []);
+
   return (
     <BookingContext.Provider
       value={{
         bookings,
-        menuIsOpen,
-        openMenu,
         handleSaveBooking,
+        handleDeleteReservation,
       }}
     >
       {children}
