@@ -4,18 +4,12 @@ export const FOOTER_STRINGS = {
   copyright: (year: number) => ` - ${year} © All rights reserved`,
 };
 
-export const OPPORTUNITIES_STRINGS = {
+export const HOME_STRINGS = {
   title: "Check these amazing opportunities",
 };
 
-export const DATEPICKER_STRINGS = {
-  separator: " to ",
-  dates: "Check-in Date - Check-out Date",
-};
-
-export const DROPDOWN_STRINGS = {
-  adults: "Select the adults",
-  children: "Select the children",
+export const DASHBOARD_STRINGS = {
+  title: "Dashboard",
 };
 
 export const GENERAL_STRINGS = {
@@ -25,4 +19,12 @@ export const GENERAL_STRINGS = {
   save_success_message: "Booking saved successfully!",
   date_already_selected:
     "This date is already selected. Please select another one.",
+  dropdown: {
+    adults: "Select the adults",
+    children: "Select the children",
+  },
+  datePicker: {
+    separator: " to ",
+    dates: "Check-in Date - Check-out Date",
+  },
 };

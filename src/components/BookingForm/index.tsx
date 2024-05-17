@@ -3,7 +3,7 @@ import DatePicker, { DateObject, Value } from "react-multi-date-picker";
 import { CalendarToday } from "@styled-icons/material-outlined";
 
 import { Button } from "components/Button";
-import { DATEPICKER, DROPDOWN, GENERAL } from "languages";
+import { GENERAL } from "languages";
 import { useBooking } from "contexts";
 import { FormGroup } from "components/FormGroup";
 
@@ -86,7 +86,9 @@ export const BookingForm = ({
         <FormGroup>
           <DatePicker
             render={
-              <Button icon={<CalendarToday />}>{DATEPICKER.dates}</Button>
+              <Button icon={<CalendarToday />}>
+                {GENERAL.datePicker.dates}
+              </Button>
             }
             hideOnScroll
             minDate={new Date()}
@@ -94,7 +96,7 @@ export const BookingForm = ({
             highlightToday={false}
             value={date}
             range
-            dateSeparator={DATEPICKER.separator}
+            dateSeparator={GENERAL.datePicker.separator}
             onChange={(date: DateObject[], { validatedValue }) => {
               if (validatedValue.length > 1) handleBookingDates(date);
             }}
@@ -102,14 +104,14 @@ export const BookingForm = ({
         </FormGroup>
 
         <SelectWrapper
-          placeholder={DROPDOWN.adults}
+          placeholder={GENERAL.dropdown.adults}
           selectOptions={dropdownAdultsMock}
           defaultValue={selectAdults}
           onChange={handleSelectAdults}
         />
 
         <SelectWrapper
-          placeholder={DROPDOWN.children}
+          placeholder={GENERAL.dropdown.children}
           selectOptions={dropdownChildrenMock}
           defaultValue={selectChildren}
           onChange={handleSelectChildren}

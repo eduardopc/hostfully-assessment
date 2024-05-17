@@ -8,6 +8,7 @@ export type BookingContextProps = {
 };
 
 export type BookingDataProps = {
+  id?: number;
   date: Value;
   selectAdults: Option;
   selectChildren: Option;

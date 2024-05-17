@@ -1,4 +1,5 @@
 import { ReactElement } from "react";
+import { Link } from "react-router-dom";
 
 import { useBooking } from "contexts";
 
@@ -14,18 +15,18 @@ export const HamburgerMenu = (): ReactElement => {
         htmlFor="navi-toggle"
         onClick={openMenu}
       >
-        <S.Icon clicked={menuIsOpen}>&nbsp;</S.Icon>
+        <S.Icon clicked={menuIsOpen} />
       </S.MenuLabel>
-      <S.NavBackground clicked={menuIsOpen}>&nbsp;</S.NavBackground>
+      <S.NavBackground clicked={menuIsOpen} />
 
       <S.Navigation clicked={menuIsOpen}>
         <S.List>
-          <S.ItemLink href="/" onClick={openMenu}>
-            Home
-          </S.ItemLink>
-          <S.ItemLink href="/dashboard" onClick={openMenu}>
-            Dashboard
-          </S.ItemLink>
+          <Link to="/">
+            <S.ItemLink onClick={openMenu}>Home</S.ItemLink>
+          </Link>
+          <Link to="/dashboard">
+            <S.ItemLink onClick={openMenu}>Dashboard</S.ItemLink>
+          </Link>
         </S.List>
       </S.Navigation>
     </S.WrapperMenu>

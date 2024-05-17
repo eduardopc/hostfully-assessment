@@ -25,7 +25,7 @@ export const MenuLabel = styled.label<TClicked>`
     height: 3.5rem;
     width: 3.5rem;
     cursor: pointer;
-    z-index: 1000;
+    z-index: 100;
     box-shadow: ${clicked ? "" : "0 1rem 3rem rgba(68, 68, 68, 0.3)"};
     text-align: center;
 
@@ -85,17 +85,21 @@ export const Icon = styled.span<TClicked>`
         height: 2px;
       `}
     }
+
     &::before {
       top: ${clicked ? "0" : "-0.8rem"};
       transform: ${clicked ? "rotate(135deg)" : "rotate(0)"};
     }
+
     &::after {
       top: ${clicked ? "0" : "0.8rem"};
       transform: ${clicked ? "rotate(-135deg)" : "rotate(0)"};
     }
+
     ${MenuLabel}:hover &::before {
       top: ${clicked ? "0" : "-1rem"};
     }
+
     ${MenuLabel}:hover &::after {
       top: ${clicked ? "0" : "1rem"};
     }
@@ -118,6 +122,10 @@ export const Navigation = styled.nav<TClicked>`
     width: ${clicked ? "100%" : "0"};
     opacity: ${clicked ? "1" : "0"};
     transition: width 0.8s, opacity 0.8s;
+
+    a {
+      text-decoration: none;
+    }
   `}
 `;
 
@@ -130,13 +138,13 @@ export const List = styled.div`
   text-align: center;
   width: 100%;
 `;
+
 export const ItemLink = styled.a`
   ${({ theme }) => css`
     display: flex;
     flex-direction: column;
     font-size: 3rem;
     font-weight: 300;
-    text-decoration: none;
     color: ${theme.colors.mainBg};
     padding: 1rem 2rem;
     background-size: 240%;
