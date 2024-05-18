@@ -57,6 +57,11 @@ export const ButtonsWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-around;
+
+  ${media.lessThan("medium")`
+    width: 100%;
+    align-items: flex-end;
+  `}
 `;
 
 export const Button = styled.button`

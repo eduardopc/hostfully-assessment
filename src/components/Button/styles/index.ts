@@ -63,6 +63,9 @@ export const Wrapper = styled.button<WrapperProps>`
     padding: ${theme.spacings.xxsmall};
     cursor: pointer;
     text-decoration: none;
+    white-space: break-spaces;
+    text-overflow: ellipsis;
+    overflow: hidden;
 
     &:hover {
       background: ${!minimal &&

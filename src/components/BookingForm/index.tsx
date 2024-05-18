@@ -21,15 +21,21 @@ import {
 import { isBookingDateRangeAvailable, showToastMessage } from "helpers";
 
 type BookingFormProps = {
+  adults?: Option;
+  children?: Option;
+  defaultDate?: Value;
   formDirection: BookingFormStyleProps["$formDirection"];
 };
 
 export const BookingForm = ({
+  adults = null,
+  children = null,
+  defaultDate = [],
   formDirection,
 }: BookingFormProps): ReactElement => {
-  const [date, setDates] = useState<Value>([]);
-  const [selectAdults, setSelectAdults] = useState<Option>(null);
-  const [selectChildren, setSelectChildren] = useState<Option>(null);
+  const [date, setDates] = useState<Value>(defaultDate);
+  const [selectAdults, setSelectAdults] = useState<Option>(adults);
+  const [selectChildren, setSelectChildren] = useState<Option>(children);
 
   const { bookings, handleSaveBooking } = useBooking();
 
@@ -118,18 +124,20 @@ export const BookingForm = ({
         />
       </BookingFormSection>
 
-      <BookingFormButtonsSection>
-        {showClearButton && (
-          <Button minimal onClick={handleClearFilters}>
-            {GENERAL.clear_filters}
-          </Button>
-        )}
-        {showSaveButton && (
-          <Button minimal onClick={handleSave}>
-            {GENERAL.save_button}
-          </Button>
-        )}
-      </BookingFormButtonsSection>
+      {formDirection === "row" && (
+        <BookingFormButtonsSection>
+          {showClearButton && (
+            <Button minimal onClick={handleClearFilters}>
+              {GENERAL.clear_filters}
+            </Button>
+          )}
+          {showSaveButton && (
+            <Button minimal onClick={handleSave}>
+              {GENERAL.save_button}
+            </Button>
+          )}
+        </BookingFormButtonsSection>
+      )}
     </BookingFormWrapper>
   );
 };
