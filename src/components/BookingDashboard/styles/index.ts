@@ -66,5 +66,6 @@ export const ButtonsWrapper = styled.div`
 
 export const Button = styled.button`
   cursor: pointer;
+  background: transparent;
   border: none;
 `;

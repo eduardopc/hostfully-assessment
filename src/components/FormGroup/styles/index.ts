@@ -1,13 +1,20 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
-export const FormGroupWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
+type FormGroupWrapperProps = {
+  $showFullWidth: boolean;
+};
 
-  small {
-    color: ${({ theme }) => theme.colors.red};
-    font-size: 12px;
-    margin-top: ${({ theme }) => theme.spacings.xsmall};
-    display: block;
-  }
+export const FormGroupWrapper = styled.div<FormGroupWrapperProps>`
+  ${({ $showFullWidth }) => css`
+    display: flex;
+    flex-direction: column;
+    width: ${$showFullWidth ? "-webkit-fill-available" : "auto"};
+
+    small {
+      color: ${({ theme }) => theme.colors.red};
+      font-size: 12px;
+      margin-top: ${({ theme }) => theme.spacings.xsmall};
+      display: block;
+    }
+  `}
 `;

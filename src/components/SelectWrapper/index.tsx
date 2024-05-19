@@ -18,6 +18,7 @@ type SelectWrapperProps = {
   placeholder: string;
   defaultValue?: Option;
   selectOptions: SelectOption[];
+  showFullWidth: boolean;
   onChange: (option: Option) => void;
 };
 
@@ -25,6 +26,7 @@ export const SelectWrapper = ({
   placeholder,
   defaultValue,
   selectOptions,
+  showFullWidth,
   onChange,
 }: SelectWrapperProps): ReactElement => {
   const handleDropdown = (option: Option) => {
@@ -32,7 +34,7 @@ export const SelectWrapper = ({
   };
 
   return (
-    <FormGroup>
+    <FormGroup showFullWidth={showFullWidth}>
       <Select
         components={animatedComponents}
         backspaceRemovesValue

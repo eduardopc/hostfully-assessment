@@ -2,7 +2,7 @@ import { ReactElement, useState } from "react";
 import { TrashCan, Edit } from "@styled-icons/fa-regular";
 
 import Heading from "components/Heading";
-import { DASHBOARD } from "languages";
+import { DASHBOARD, GENERAL } from "languages";
 import { useBooking } from "contexts";
 
 import * as S from "./styles";
@@ -11,15 +11,15 @@ import { Modal } from "components/Modal";
 import { BookingForm } from "components/BookingForm";
 
 export const BookingDashboard = (): ReactElement => {
-  const [showUpdateModal, setShowUpdateModal] = useState(false);
   const [bookingBeingUpdated, setBookingBeingUpdated] =
     useState<BookingDataProps>();
 
-  const { bookings, handleDeleteReservation } = useBooking();
-
-  const handleShowModal = () => {
-    setShowUpdateModal((prevState) => !prevState);
-  };
+  const {
+    bookings,
+    showUpdateModal,
+    handleShowModal,
+    handleDeleteReservation,
+  } = useBooking();
 
   const handleUpdateModal = (booking: BookingDataProps) => {
     setBookingBeingUpdated(booking);
@@ -83,14 +83,16 @@ export const BookingDashboard = (): ReactElement => {
 
       <Modal
         visible={showUpdateModal}
-        title={"Update reservation"}
+        title={GENERAL.update_reservation}
         onCancelButton={handleShowModal}
       >
         <BookingForm
-          formDirection="column"
-          defaultDate={bookingBeingUpdated?.date}
           adults={bookingBeingUpdated?.selectAdults}
           children={bookingBeingUpdated?.selectChildren}
+          defaultDate={bookingBeingUpdated?.date}
+          formDirection="column"
+          reservationId={bookingBeingUpdated?.id}
+          confirmTextButton={GENERAL.update_button}
         />
       </Modal>
     </>

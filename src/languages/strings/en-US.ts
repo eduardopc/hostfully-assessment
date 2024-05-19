@@ -31,6 +31,8 @@ export const GENERAL_STRINGS = {
   save_error_message: "Please fill all the fields before saving the booking.",
   save_success_message: "Booking saved successfully!",
   update_button: "Update",
+  update_reservation: "Update reservation",
+  update_success_message: "Booking updated successfully!",
 };
 
 export const HOME_STRINGS = {

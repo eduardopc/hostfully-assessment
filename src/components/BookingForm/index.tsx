@@ -24,26 +24,67 @@ type BookingFormProps = {
   adults?: Option;
   children?: Option;
   defaultDate?: Value;
+  reservationId?: string;
   formDirection: BookingFormStyleProps["$formDirection"];
+  confirmTextButton?: string;
 };
 
 export const BookingForm = ({
   adults = null,
   children = null,
   defaultDate = [],
+  reservationId,
   formDirection,
+  confirmTextButton = GENERAL.save_button,
 }: BookingFormProps): ReactElement => {
   const [date, setDates] = useState<Value>(defaultDate);
   const [selectAdults, setSelectAdults] = useState<Option>(adults);
   const [selectChildren, setSelectChildren] = useState<Option>(children);
 
-  const { bookings, handleSaveBooking } = useBooking();
+  const { bookings, handleBooking } = useBooking();
+
+  const isEditingReservation = !!reservationId;
+  const allFieldsFilled =
+    date?.toLocaleString().length || selectAdults || selectChildren;
+  const showSaveButton =
+    isEditingReservation || (date && selectAdults && selectChildren);
 
   const handleBookingDates = (date: DateObject[]): void => {
     const [from, to] = date.toLocaleString().split(",");
 
     if (isBookingDateRangeAvailable(new Date(from), new Date(to), bookings)) {
       setDates(date);
+    } else {
+      setDates([]);
+      showToastMessage({
+        message: GENERAL.date_already_selected,
+        type: "warning",
+      });
+    }
+  };
+
+  const handleUpdateBookingDates = (updatedDate: DateObject[]): void => {
+    const [from, to] = updatedDate.toLocaleString().split(",");
+
+    if (bookings.length === 1) {
+      setDates(updatedDate);
+      return;
+    }
+
+    const getAllOtherReservations = bookings
+      .filter((value) => value.id !== reservationId)
+      .map((booking) => {
+        return booking;
+      });
+
+    if (
+      isBookingDateRangeAvailable(
+        new Date(from),
+        new Date(to),
+        getAllOtherReservations
+      )
+    ) {
+      setDates(updatedDate);
     } else {
       setDates([]);
       showToastMessage({
@@ -67,24 +108,23 @@ export const BookingForm = ({
     setSelectChildren(null);
   };
 
-  const handleSave = (): void => {
-    if (!date || !selectAdults || !selectChildren) {
+  const handleConfirm = (): void => {
+    if (!date?.toLocaleString().length || !selectAdults || !selectChildren) {
       showToastMessage({ message: GENERAL.save_error_message, type: "error" });
 
       return;
     }
 
-    handleSaveBooking({ date, selectAdults, selectChildren });
+    handleBooking({ id: reservationId, date, selectAdults, selectChildren });
+
     showToastMessage({
-      message: GENERAL.save_success_message,
+      message: isEditingReservation
+        ? GENERAL.update_success_message
+        : GENERAL.save_success_message,
       type: "success",
       onOpen: handleClearFilters,
     });
   };
-
-  const showClearButton =
-    date?.toLocaleString().length || selectAdults || selectChildren;
-  const showSaveButton = date && selectAdults && selectChildren;
 
   return (
     <BookingFormWrapper $formDirection={formDirection}>
@@ -97,14 +137,17 @@ export const BookingForm = ({
               </Button>
             }
             hideOnScroll
-            minDate={new Date()}
+            minDate={new DateObject()}
             calendarPosition="bottom"
-            highlightToday={false}
             value={date}
+            highlightToday={false}
             range
             dateSeparator={GENERAL.date_picker.separator}
             onChange={(date: DateObject[], { validatedValue }) => {
-              if (validatedValue.length > 1) handleBookingDates(date);
+              if (validatedValue.length > 1)
+                isEditingReservation
+                  ? handleUpdateBookingDates(date)
+                  : handleBookingDates(date);
             }}
           />
         </FormGroup>
@@ -113,6 +156,7 @@ export const BookingForm = ({
           placeholder={GENERAL.dropdown.adults}
           selectOptions={dropdownAdultsMock}
           defaultValue={selectAdults}
+          showFullWidth={isEditingReservation}
           onChange={handleSelectAdults}
         />
 
@@ -120,24 +164,23 @@ export const BookingForm = ({
           placeholder={GENERAL.dropdown.children}
           selectOptions={dropdownChildrenMock}
           defaultValue={selectChildren}
+          showFullWidth={isEditingReservation}
           onChange={handleSelectChildren}
         />
       </BookingFormSection>
 
-      {formDirection === "row" && (
-        <BookingFormButtonsSection>
-          {showClearButton && (
-            <Button minimal onClick={handleClearFilters}>
-              {GENERAL.clear_filters}
-            </Button>
-          )}
-          {showSaveButton && (
-            <Button minimal onClick={handleSave}>
-              {GENERAL.save_button}
-            </Button>
-          )}
-        </BookingFormButtonsSection>
-      )}
+      <BookingFormButtonsSection $openedFromModal={isEditingReservation}>
+        {!isEditingReservation && allFieldsFilled && (
+          <Button minimal onClick={handleClearFilters}>
+            {GENERAL.clear_filters}
+          </Button>
+        )}
+        {showSaveButton && (
+          <Button minimal={!isEditingReservation} onClick={handleConfirm}>
+            {confirmTextButton}
+          </Button>
+        )}
+      </BookingFormButtonsSection>
     </BookingFormWrapper>
   );
 };

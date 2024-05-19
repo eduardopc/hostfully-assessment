@@ -20,26 +20,29 @@ export const Container = styled.div`
     border-radius: ${theme.border.radius};
     padding: ${theme.spacings.small};
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.04);
-    max-width: 450px;
+    max-width: 350px;
     width: 100%;
 
-    > h1 {
-      font-size: 22px;
-    }
-
     .modal-body {
-      margin-top: 16px;
+      margin-top: 24px;
       display: flex;
       justify-content: center;
     }
   `}
 `;
 
-export const Footer = styled.footer`
-  ${({ theme }) => css`
-    margin-top: ${theme.spacings.medium};
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-  `}
+export const HeaderContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  > h1 {
+    font-size: 22px;
+  }
+
+  > button {
+    cursor: pointer;
+    border: none;
+    background: transparent;
+  }
 `;

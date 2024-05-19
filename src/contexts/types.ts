@@ -8,7 +8,7 @@ export type BookingContextProps = {
 };
 
 export type BookingDataProps = {
-  id?: number;
+  id?: string;
   date: Value;
   selectAdults: Option;
   selectChildren: Option;
@@ -16,6 +16,8 @@ export type BookingDataProps = {
 
 export type BookingContextData = {
   bookings: BookingDataProps[];
-  handleSaveBooking: (option: BookingDataProps) => void;
+  showUpdateModal: boolean;
+  handleBooking: (option: BookingDataProps) => void;
+  handleShowModal: () => void;
   handleDeleteReservation: (id: BookingDataProps["id"]) => void;
 };

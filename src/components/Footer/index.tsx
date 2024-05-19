@@ -41,21 +41,6 @@ export const Footer = (): ReactElement => {
           </nav>
         </S.Column>
 
-        <S.Column>
-          <Heading color="black" lineColor="secondary" lineBottom size="small">
-            Links
-          </Heading>
-
-          <nav aria-labelledby="footer resources">
-            <a href="/">
-              <a>Home</a>
-            </a>
-            <a href="/games">
-              <a>Bookings</a>
-            </a>
-          </nav>
-        </S.Column>
-
         <S.Column aria-labelledby="footer-contact">
           <Heading color="black" lineColor="secondary" lineBottom size="small">
             Location

@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 import media from "styled-media-query";
 
@@ -27,13 +27,17 @@ export const BookingFormSection = styled.section<BookingFormStyleProps>`
   gap: ${({ theme }) => theme.spacings.xsmall};
 `;
 
-export const BookingFormButtonsSection = styled.div`
-  display: flex;
-  flex-direction: row;
-  gap: ${({ theme }) => theme.spacings.xsmall};
-  flex-wrap: wrap;
+type BookingFormButtonsSectionProps = {
+  $openedFromModal: boolean;
+};
 
-  ${media.greaterThan("medium")`
-    margin-left: ${({ theme }) => theme.spacings.xsmall};
+export const BookingFormButtonsSection = styled.div<BookingFormButtonsSectionProps>`
+  ${({ theme, $openedFromModal }) => css`
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    gap: ${$openedFromModal ? theme.spacings.xxsmall : theme.spacings.xsmall};
+    flex-wrap: wrap;
+    margin-top: ${$openedFromModal ? theme.spacings.medium : "auto"};
   `}
 `;

@@ -1,17 +1,15 @@
 import { ReactElement } from "react";
+import { Close } from "@styled-icons/material-outlined";
 
 import Portal from "components/Portal";
-import { Button } from "components/Button";
 
 import * as S from "./styles";
-import { GENERAL } from "languages";
 
 type ModalProps = {
   title: string;
   visible: boolean;
   children: ReactElement;
   onCancelButton?: () => void;
-  onConfirmButton?: () => void;
 };
 
 export const Modal = ({
@@ -19,14 +17,9 @@ export const Modal = ({
   visible,
   children,
   onCancelButton,
-  onConfirmButton,
 }: ModalProps): ReactElement | null => {
   const handleCancelButton = () => {
     onCancelButton?.();
-  };
-
-  const handleConfirmButton = () => {
-    onConfirmButton?.();
   };
 
   if (!visible) return null;
@@ -35,14 +28,13 @@ export const Modal = ({
     <Portal>
       <S.Overlay>
         <S.Container>
-          <h1>{title}</h1>
+          <S.HeaderContainer>
+            <h1>{title}</h1>
+            <button onClick={handleCancelButton}>
+              <Close size={24} />
+            </button>
+          </S.HeaderContainer>
           <div className="modal-body">{children}</div>
-          <S.Footer>
-            <Button minimal onClick={handleCancelButton}>
-              {GENERAL.cancel_button}
-            </Button>
-            <Button>{GENERAL.update_button}</Button>
-          </S.Footer>
         </S.Container>
       </S.Overlay>
     </Portal>

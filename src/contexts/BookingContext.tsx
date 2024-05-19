@@ -22,14 +22,34 @@ export const BookingContext = createContext<BookingContextData>(
 export const BookingProvider = ({
   children,
 }: BookingContextProps): ReactElement => {
+  const [showUpdateModal, setShowUpdateModal] = useState(false);
   const [bookings, setBookings] = useState<BookingDataProps[]>([]);
 
-  const handleSaveBooking = useCallback((bookingData: BookingDataProps) => {
-    setBookings((prevState) => [
-      ...prevState,
-      { ...bookingData, id: uuidv4() },
-    ]);
+  const handleShowModal = useCallback(() => {
+    setShowUpdateModal((prevState) => !prevState);
   }, []);
+
+  const handleBooking = useCallback(
+    (bookingData: BookingDataProps) => {
+      if (showUpdateModal) handleShowModal();
+
+      if (bookingData.id) {
+        setBookings((prevState) =>
+          prevState.map((booking) =>
+            booking.id === bookingData.id ? bookingData : booking
+          )
+        );
+
+        return;
+      }
+
+      setBookings((prevState) => [
+        ...prevState,
+        { ...bookingData, id: uuidv4() },
+      ]);
+    },
+    [showUpdateModal, handleShowModal]
+  );
 
   const handleDeleteReservation = useCallback((id: BookingDataProps["id"]) => {
     setBookings((prevState) =>
@@ -45,7 +65,9 @@ export const BookingProvider = ({
     <BookingContext.Provider
       value={{
         bookings,
-        handleSaveBooking,
+        showUpdateModal,
+        handleBooking,
+        handleShowModal,
         handleDeleteReservation,
       }}
     >
