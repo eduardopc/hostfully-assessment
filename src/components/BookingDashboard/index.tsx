@@ -9,6 +9,7 @@ import * as S from "./styles";
 import { BookingDataProps } from "contexts/types";
 import { Modal } from "components/Modal";
 import { BookingForm } from "components/BookingForm";
+import { getReservationCost } from "helpers";
 
 export const BookingDashboard = (): ReactElement => {
   const [bookingBeingUpdated, setBookingBeingUpdated] =
@@ -39,6 +40,8 @@ export const BookingDashboard = (): ReactElement => {
               <th>{DASHBOARD.table_header.date}</th>
               <th>{DASHBOARD.table_header.adults}</th>
               <th>{DASHBOARD.table_header.children}</th>
+              <th>{DASHBOARD.table_header.place}</th>
+              <th>{DASHBOARD.table_header.total}</th>
               <th></th>
             </tr>
           </thead>
@@ -59,6 +62,17 @@ export const BookingDashboard = (): ReactElement => {
                   <td>
                     <S.Cell>{DASHBOARD.table_header.children}</S.Cell>
                     {booking.selectChildren?.label}
+                  </td>
+                  <td>
+                    <S.Cell>{DASHBOARD.table_header.place}</S.Cell>
+                    {booking.selectPlace?.label}
+                  </td>
+                  <td>
+                    <S.Cell>{DASHBOARD.table_header.total}</S.Cell>
+                    {getReservationCost({
+                      dates,
+                      pricePerDay: booking.selectPlace?.pricePerDay,
+                    })}
                   </td>
                   <td>
                     <S.ButtonsWrapper>
@@ -90,6 +104,7 @@ export const BookingDashboard = (): ReactElement => {
           adults={bookingBeingUpdated?.selectAdults}
           children={bookingBeingUpdated?.selectChildren}
           defaultDate={bookingBeingUpdated?.date}
+          place={bookingBeingUpdated?.selectPlace}
           formDirection="column"
           reservationId={bookingBeingUpdated?.id}
           confirmTextButton={GENERAL.update_button}

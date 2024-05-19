@@ -3,23 +3,20 @@ import { FormGroup } from "components/FormGroup";
 import Select, { SingleValue } from "react-select";
 import makeAnimated from "react-select/animated";
 
+import { PlaceSelectOption } from "types";
+
 import * as S from "./styles";
 
 const animatedComponents = makeAnimated();
 
-export type Option = SingleValue<SelectOption> | null;
+export type Option<T> = SingleValue<T> | null;
 
-export type SelectOption = {
-  value: string;
-  label: string;
-};
-
-type SelectWrapperProps = {
+type SelectWrapperProps<T> = {
   placeholder: string;
-  defaultValue?: Option;
-  selectOptions: SelectOption[];
+  defaultValue?: Option<T>;
+  selectOptions: T[];
   showFullWidth: boolean;
-  onChange: (option: Option) => void;
+  onChange: (option: Option<T>) => void;
 };
 
 export const SelectWrapper = ({
@@ -28,8 +25,8 @@ export const SelectWrapper = ({
   selectOptions,
   showFullWidth,
   onChange,
-}: SelectWrapperProps): ReactElement => {
-  const handleDropdown = (option: Option) => {
+}: SelectWrapperProps<PlaceSelectOption>): ReactElement => {
+  const handleDropdown = (option: Option<PlaceSelectOption>) => {
     onChange(option);
   };
 

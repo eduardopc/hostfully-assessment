@@ -1,6 +1,8 @@
 export const DASHBOARD_STRINGS = {
   table_header: {
     date: "Date",
+    place: "Place",
+    total: "Total",
     adults: "# Adults",
     children: "# Children",
   },
@@ -24,6 +26,7 @@ export const GENERAL_STRINGS = {
   },
   delete_reservation: "Your reservation has been deleted successfully!",
   dropdown: {
+    place: "Select the place",
     adults: "Select the adults",
     children: "Select the children",
   },

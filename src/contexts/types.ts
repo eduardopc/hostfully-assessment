@@ -3,6 +3,8 @@ import { ReactNode } from "react";
 import { Option } from "components/SelectWrapper";
 import { Value } from "react-multi-date-picker";
 
+import { PlaceSelectOption, SelectOption } from "types";
+
 export type BookingContextProps = {
   children?: ReactNode;
 };
@@ -10,8 +12,9 @@ export type BookingContextProps = {
 export type BookingDataProps = {
   id?: string;
   date: Value;
-  selectAdults: Option;
-  selectChildren: Option;
+  selectPlace: Option<PlaceSelectOption>;
+  selectAdults: Option<SelectOption>;
+  selectChildren: Option<SelectOption>;
 };
 
 export type BookingContextData = {

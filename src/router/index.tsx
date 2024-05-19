@@ -1,8 +1,9 @@
+import { ReactElement } from "react";
 import { Routes, Route } from "react-router-dom";
 
 import { Home } from "pages/Home";
 
-export const Router = () => {
+export const Router = (): ReactElement => {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
