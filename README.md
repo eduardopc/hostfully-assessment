@@ -40,10 +40,10 @@ Obs.: The current coverage of the unit testing is above 90%.
 ![Alt text](image.png)
 
 - I decided to use 'Context API' to handle the booking data across all the components ('contexts' folder)
-- All the components are under the 'components' folder
+- All the components are under the 'components' folder and each one of them contains its own test folder
 - I created the 'helpers' folder with some functions that support the logic inside of the components
 - The 'hooks' folder was created to move some huge logic of the component, let the component with the unique responsibility to show the component (Separation of concern)
-- To handle with i18n the 'languages' folder was created (curren only en-US keys are being used)
+- To handle with i18n the 'languages' folder was created (current only en-US keys are being used)
 - There is only one page to this application
 - The 'styles' folder contains all the tokens used in the application and the default styling.
 - And the 'utils' folder contains a function that apply the theme in the tests
