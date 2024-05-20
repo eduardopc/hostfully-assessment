@@ -77,13 +77,17 @@ export const BookingDashboard = (): ReactElement => {
                   <td>
                     <S.ButtonsWrapper>
                       <S.Button
+                        data-testid="delete-reservation"
                         onClick={(): void =>
                           handleDeleteReservation(booking.id)
                         }
                       >
                         <TrashCan size={24} />
                       </S.Button>
-                      <S.Button onClick={() => handleUpdateModal(booking)}>
+                      <S.Button
+                        data-testid="edit-reservation"
+                        onClick={() => handleUpdateModal(booking)}
+                      >
                         <Edit size={24} />
                       </S.Button>
                     </S.ButtonsWrapper>
