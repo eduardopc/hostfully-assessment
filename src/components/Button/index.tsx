@@ -34,9 +34,9 @@ export const Button = forwardRef(
     return (
       <S.Wrapper
         size={size}
-        fullWidth={fullWidth}
-        hasIcon={!!icon}
-        minimal={minimal}
+        $fullWidth={fullWidth}
+        $hasIcon={!!icon}
+        $minimal={minimal}
         ref={ref}
         {...props}
       >

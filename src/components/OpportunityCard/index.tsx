@@ -12,7 +12,7 @@ export const OpportunityCard = ({
   description,
 }: OpportunityCardProps) => {
   return (
-    <S.Card>
+    <S.Card data-testid="opportunity-card">
       <S.Image src={image} />
       <S.Title>{title}</S.Title>
       <S.Description dangerouslySetInnerHTML={{ __html: description }} />

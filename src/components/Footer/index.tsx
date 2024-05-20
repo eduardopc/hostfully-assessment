@@ -1,6 +1,6 @@
 import { ReactElement } from "react";
 
-import Heading from "components/Heading";
+import { Heading } from "components/Heading";
 import { FOOTER } from "languages";
 
 import * as S from "./styles";

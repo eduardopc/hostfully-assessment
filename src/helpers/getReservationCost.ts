@@ -1,4 +1,5 @@
 import { differenceInDays } from "date-fns";
+import { GENERAL } from "languages";
 
 import { PlaceSelectOption } from "types";
 
@@ -11,7 +12,7 @@ export const getReservationCost = ({
   dates,
   pricePerDay,
 }: GetReservationCostProps): string => {
-  if (!dates || !pricePerDay) return "Please, remade the reservation.";
+  if (!dates || !pricePerDay) return GENERAL.remake_reservation;
 
   const days = differenceInDays(dates[1], dates[0]);
 

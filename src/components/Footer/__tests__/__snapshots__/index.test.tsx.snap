@@ -1,0 +1,78 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`<Footer /> > should render 3 columns topics 1`] = `
+<footer
+  class="sc-gTRrcP hjDaIy"
+>
+  <div
+    class="sc-ewnpUy fVmliq"
+  >
+    <div
+      class="sc-fFGkvd cBhQVS"
+    >
+      <h2
+        class="sc-bgqQPU iNiuGW"
+        color="black"
+      >
+        Contact Us
+      </h2>
+      <a
+        href="mailto:sample@mail.com"
+      >
+        sample@mail.com
+      </a>
+    </div>
+    <div
+      class="sc-fFGkvd cBhQVS"
+    >
+      <h2
+        class="sc-bgqQPU iNiuGW"
+        color="black"
+      >
+        Follow us
+      </h2>
+      <nav
+        aria-labelledby="social media"
+      >
+        <a
+          href="https://www.instagram.com/hostfully_/"
+          rel="noopenner, noreferrer"
+          target="_blank"
+        >
+          Instagram
+        </a>
+        <a
+          href="https://www.linkedin.com/company/hostfully-inc-/"
+          rel="noopenner, noreferrer"
+          target="_blank"
+        >
+          LinkedIn
+        </a>
+      </nav>
+    </div>
+    <div
+      aria-labelledby="footer-contact"
+      class="sc-fFGkvd cBhQVS"
+    >
+      <h2
+        class="sc-bgqQPU iNiuGW"
+        color="black"
+      >
+        Location
+      </h2>
+      <span>
+        Lorem ipsum dolor sit.
+      </span>
+    </div>
+  </div>
+  <div
+    class="sc-dicjmM eOshWU"
+  >
+    Developed by 
+    <strong>
+      Hostfully
+    </strong>
+     - 2024 © All rights reserved
+  </div>
+</footer>
+`;

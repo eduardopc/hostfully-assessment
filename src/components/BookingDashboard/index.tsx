@@ -1,7 +1,7 @@
 import { ReactElement, useState } from "react";
 import { TrashCan, Edit } from "@styled-icons/fa-regular";
 
-import Heading from "components/Heading";
+import { Heading } from "components/Heading";
 import { DASHBOARD, GENERAL } from "languages";
 import { useBooking } from "contexts";
 

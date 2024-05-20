@@ -19,13 +19,12 @@ import {
   BookingFormWrapper,
 } from "./styles";
 import { UseReservationParams, useReservation } from "hooks/useReservation";
+import { US_DEFAULT_FORMAT } from "constants";
 
 type BookingFormProps = UseReservationParams & {
   formDirection: BookingFormStyleProps["$formDirection"];
   confirmTextButton?: string;
 };
-
-const US_DEFAULT_FORMAT = "MM/DD/YYYY";
 
 export const BookingForm = ({
   place = null,

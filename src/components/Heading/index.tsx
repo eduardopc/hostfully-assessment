@@ -13,7 +13,7 @@ export type HeadingProps = {
   lineColor?: "primary" | "secondary";
 };
 
-const Heading = ({
+export const Heading = ({
   children,
   color = "white",
   lineColor = "primary",
@@ -23,13 +23,11 @@ const Heading = ({
 }: HeadingProps): ReactElement => (
   <S.Wrapper
     color={color}
-    lineLeft={lineLeft}
-    lineBottom={lineBottom}
+    $lineLeft={lineLeft}
+    $lineBottom={lineBottom}
     size={size}
-    lineColor={lineColor}
+    $lineColor={lineColor}
   >
     {children}
   </S.Wrapper>
 );
-
-export default Heading;

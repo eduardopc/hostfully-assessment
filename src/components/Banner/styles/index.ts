@@ -26,6 +26,7 @@ export const Image = styled.div<ImageProps>`
     background-image: url(${src});
     background-position: center center;
     background-size: cover;
+
     ${media.greaterThan("medium")`
       height: 58rem;
     `}

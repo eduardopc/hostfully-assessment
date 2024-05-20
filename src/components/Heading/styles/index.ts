@@ -3,6 +3,12 @@ import media from "styled-media-query";
 
 import { HeadingProps, LineColors } from "..";
 
+type WrapperProps = Pick<HeadingProps, "color" | "size"> & {
+  $lineColor: HeadingProps["lineColor"];
+  $lineBottom: HeadingProps["lineBottom"];
+  $lineLeft: HeadingProps["lineLeft"];
+};
+
 export const wrapperModifiers = {
   small: (theme: DefaultTheme) => css`
     font-size: ${theme.font.sizes.medium};
@@ -44,12 +50,12 @@ export const wrapperModifiers = {
   `,
 };
 
-export const Wrapper = styled.h2<HeadingProps>`
-  ${({ theme, color, lineLeft, lineBottom, size, lineColor }) => css`
+export const Wrapper = styled.h2<WrapperProps>`
+  ${({ theme, color, $lineLeft, $lineBottom, size, $lineColor }) => css`
     color: ${theme.colors[color!]};
 
-    ${lineLeft && wrapperModifiers.lineLeft(theme, lineColor!)};
-    ${lineBottom && wrapperModifiers.lineBottom(theme, lineColor!)};
+    ${$lineLeft && wrapperModifiers.lineLeft(theme, $lineColor!)};
+    ${$lineBottom && wrapperModifiers.lineBottom(theme, $lineColor!)};
     ${!!size && wrapperModifiers[size](theme)};
   `}
 `;

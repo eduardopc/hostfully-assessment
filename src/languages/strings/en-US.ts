@@ -30,6 +30,7 @@ export const GENERAL_STRINGS = {
     adults: "Select the adults",
     children: "Select the children",
   },
+  remake_reservation: "Please, remake the reservation.",
   save_button: "Save",
   save_error_message: "Please fill all the fields before saving the booking.",
   save_success_message: "Booking saved successfully!",

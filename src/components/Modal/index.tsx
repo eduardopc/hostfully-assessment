@@ -30,7 +30,7 @@ export const Modal = ({
         <S.Container>
           <S.HeaderContainer>
             <h1>{title}</h1>
-            <button onClick={handleCancelButton}>
+            <button onClick={handleCancelButton} data-testid="close">
               <Close size={24} />
             </button>
           </S.HeaderContainer>
